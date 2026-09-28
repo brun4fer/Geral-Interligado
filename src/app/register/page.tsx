@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { registerAction } from "@/actions/auth";
 import { AuthShell } from "@/components/auth-shell";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, registrationEnabled } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +14,7 @@ const messages: Record<string, string> = {
 };
 
 export default async function RegisterPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+  if (!registrationEnabled()) redirect("/login");
   if (await getCurrentUser()) redirect("/");
   const { error } = await searchParams;
 

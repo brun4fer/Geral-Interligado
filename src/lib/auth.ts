@@ -6,8 +6,15 @@ import { query } from "@/lib/db";
 const COOKIE_NAME = "ap_portal_session";
 const SESSION_SECONDS = 60 * 60 * 24 * 30;
 
+export function registrationEnabled() {
+  if (process.env.PORTAL_REGISTRATION_ENABLED === "true") return true;
+  if (process.env.PORTAL_REGISTRATION_ENABLED === "false") return false;
+  return process.env.NODE_ENV !== "production";
+}
+
 export type PortalUser = {
   id: number;
+  ssoSubject: string;
   username: string;
   workspaceId: number;
   workspaceName: string;
@@ -52,6 +59,7 @@ export async function getCurrentUser(): Promise<PortalUser | null> {
   const result = await query<PortalUser>(
     `SELECT
        u.id::int AS id,
+       u.sso_subject::text AS "ssoSubject",
        u.username,
        w.id::int AS "workspaceId",
        w.name AS "workspaceName",
@@ -72,4 +80,3 @@ export async function requireUser() {
   if (!user) redirect("/login");
   return user;
 }
-

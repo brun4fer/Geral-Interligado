@@ -73,10 +73,9 @@ export default async function DashboardPage() {
 
         <footer className="mt-16 flex flex-col justify-between gap-3 border-t border-white/[0.07] py-7 text-xs text-[#617b76] sm:flex-row">
           <span>AP Football Analysis · Central privada</span>
-          <span>Cada software mantém a sua autenticação própria.</span>
+          <span>Cada software mantém os seus dados e aceita a identidade do portal.</span>
         </footer>
       </div>
     </main>
   );
 }
-

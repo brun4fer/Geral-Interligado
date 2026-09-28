@@ -60,7 +60,7 @@ export const productGroups: ProductGroup[] = [
       {
         title: "Análise de jogo",
         description: "Revê os jogos da equipa, identifica momentos e produz mapas.",
-        url: "https://analise-equipa.vercel.app/login?next=%2F",
+        url: "/sso/launch/analise-equipa",
         icon: "chart",
         label: "3.1"
       },
@@ -110,4 +110,3 @@ export const productGroups: ProductGroup[] = [
     ]
   }
 ];
-

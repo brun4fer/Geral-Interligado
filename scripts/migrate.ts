@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { Client } from "pg";
 
@@ -17,9 +17,17 @@ async function main() {
 
   await client.connect();
   try {
-    const migration = await readFile(path.join(process.cwd(), "src/db/migrations/0001_portal_auth.sql"), "utf8");
-    await client.query(migration);
-    console.log("Portal authentication tables are ready.");
+    const migrationsDirectory = path.join(process.cwd(), "src/db/migrations");
+    const migrations = (await readdir(migrationsDirectory))
+      .filter((file) => file.endsWith(".sql"))
+      .sort();
+
+    for (const file of migrations) {
+      const migration = await readFile(path.join(migrationsDirectory, file), "utf8");
+      await client.query(migration);
+      console.log(`Applied ${file}.`);
+    }
+    console.log("Portal database is ready.");
   } finally {
     await client.end();
   }
@@ -29,4 +37,3 @@ main().catch((error) => {
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });
-

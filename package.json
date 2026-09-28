@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/lib/*.test.ts",
     "db:migrate": "tsx scripts/migrate.ts"
   },
   "dependencies": {
@@ -29,4 +30,3 @@
     "typescript": "^5.9.2"
   }
 }
-

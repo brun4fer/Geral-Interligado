@@ -2,9 +2,10 @@
 
 import { randomBytes } from "node:crypto";
 import { redirect } from "next/navigation";
-import { createSession, destroySession, requireUser } from "@/lib/auth";
+import { createSession, destroySession, registrationEnabled, requireUser } from "@/lib/auth";
 import { query, transaction } from "@/lib/db";
 import { hashPassword, verifyPassword } from "@/lib/password";
+import { safePortalReturnPath } from "@/lib/sso";
 
 function text(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim();
@@ -46,10 +47,11 @@ export async function loginAction(formData: FormData) {
   }
 
   await createSession(user.id);
-  redirect("/");
+  redirect(safePortalReturnPath(text(formData, "next")));
 }
 
 export async function registerAction(formData: FormData) {
+  if (!registrationEnabled()) redirect("/login?error=registration-disabled");
   const workspaceName = text(formData, "workspaceName");
   const username = text(formData, "username");
   const candidate = password(formData, "password");
@@ -124,4 +126,3 @@ export async function updateCredentialsAction(formData: FormData) {
   await createSession(user.id);
   redirect("/account?updated=1");
 }
-
