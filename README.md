@@ -2,15 +2,24 @@
 
 Portal privado que organiza e abre todos os softwares do ecossistema AP Football Analysis.
 
-## Módulos
+## Mapa do ecossistema
 
-- Adversário: Análise ao adversário e Golos marcados
-- Jogadores adversários: reservado para desenvolvimento futuro
-- A nossa equipa: Análise de jogo e Golos sofridos
-- Os nossos jogadores: Análise individual e Mapa de ações
-- Live Game: reservado para desenvolvimento futuro
+- Opponent teams
+- Opponent players
+- Our team performance
+- Our players performance
+- Practice
+- Individual tactics
+- Collective tactics
+- Scouting
 
-Cada software continua a ter a sua própria autenticação. O portal funciona como ponto central de entrada e mantém as suas contas numa base de dados independente.
+Ao passar o rato, usar o teclado ou tocar numa área, o portal mostra os softwares
+relacionados. Os módulos ainda não criados surgem como planeados, sem uma ligação
+que possa levar o utilizador a uma página inexistente.
+
+Os endereços do TactiDraw, GamePlan, Live Game e Live Training são configuráveis
+com `TACTIDRAW_URL`, `GAMEPLAN_URL`, `WRITTEN_REPORT_URL`, `LIVE_GAME_URL` e
+`LIVE_TRAINING_URL`.
 
 ## Configuração local
 

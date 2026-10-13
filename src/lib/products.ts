@@ -1,112 +1,226 @@
+export type ProductIcon = "video" | "goal" | "users" | "chart" | "map" | "live" | "document" | "presentation" | "training" | "scouting";
+
+export type ProductStatus = "available" | "configuration" | "planned";
+
 export type Product = {
+  id: string;
   title: string;
   description: string;
   url?: string;
-  icon: "video" | "goal" | "users" | "chart" | "map" | "live";
-  label: string;
+  icon: ProductIcon;
+  status: ProductStatus;
 };
 
-export type ProductGroup = {
+export type EcosystemArea = {
+  id: string;
   number: string;
   title: string;
   description: string;
-  accent: "cyan" | "violet" | "mint" | "amber" | "rose";
+  icon: "opponent-team" | "opponent-player" | "our-team" | "our-player" | "practice" | "individual" | "collective" | "scouting";
+  accent: string;
   products: Product[];
 };
 
-export const productGroups: ProductGroup[] = [
-  {
-    number: "01",
-    title: "Adversário",
-    description: "Preparação coletiva e padrões de finalização do próximo adversário.",
-    accent: "cyan",
-    products: [
-      {
-        title: "Análise ao adversário",
-        description: "Identifica momentos, submomentos e padrões coletivos em vídeo.",
-        url: "https://analise-adversario.vercel.app/",
-        icon: "video",
-        label: "1.1"
-      },
-      {
-        title: "Golos marcados",
-        description: "Regista e consulta os golos marcados pelo adversário.",
-        url: "https://football-analysis1.vercel.app/",
-        icon: "goal",
-        label: "1.2"
-      }
-    ]
-  },
-  {
-    number: "02",
-    title: "Jogadores adversários",
-    description: "Observação individual e perfis dos jogadores que vais enfrentar.",
-    accent: "violet",
-    products: [
-      {
-        title: "Análise individual adversária",
-        description: "Módulo reservado para a futura análise dos jogadores adversários.",
-        icon: "users",
-        label: "2.1"
-      }
-    ]
-  },
-  {
-    number: "03",
-    title: "A nossa equipa",
-    description: "Análise coletiva da equipa e revisão dos golos sofridos.",
-    accent: "mint",
-    products: [
-      {
-        title: "Análise de jogo",
-        description: "Revê os jogos da equipa, identifica momentos e produz mapas.",
-        url: "/sso/launch/analise-equipa",
-        icon: "chart",
-        label: "3.1"
-      },
-      {
-        title: "Golos sofridos",
-        description: "Regista o contexto tático e os intervenientes de cada golo sofrido.",
-        url: "https://golossofridos.vercel.app/",
-        icon: "goal",
-        label: "3.2"
-      }
-    ]
-  },
-  {
-    number: "04",
-    title: "Os nossos jogadores",
-    description: "Vídeo individual e métricas de rendimento dos teus jogadores.",
-    accent: "amber",
-    products: [
-      {
-        title: "Análise individual",
-        description: "Marca ações e subações individuais diretamente sobre o vídeo.",
-        url: "https://video-analise-jogadores.vercel.app/",
-        icon: "video",
-        label: "4.1"
-      },
-      {
-        title: "Mapa de ações",
-        description: "Consulta estatísticas, comparações e mapas de rendimento.",
-        url: "https://football-our-players-yavn.vercel.app/",
-        icon: "map",
-        label: "4.2"
-      }
-    ]
-  },
-  {
-    number: "05",
-    title: "Live Game",
-    description: "Informação e apoio à decisão durante o jogo.",
-    accent: "rose",
-    products: [
-      {
-        title: "Análise em direto",
-        description: "Espaço reservado para o futuro módulo de acompanhamento ao vivo.",
-        icon: "live",
-        label: "5.1"
-      }
-    ]
-  }
-];
+function configuredProduct(product: Omit<Product, "status">): Product {
+  return { ...product, status: product.url ? "available" : "configuration" };
+}
+
+export function getEcosystemAreas(): EcosystemArea[] {
+  const tactiDrawUrl = process.env.TACTIDRAW_URL?.trim() || "https://draw-analysis.vercel.app";
+  const gamePlanUrl = process.env.GAMEPLAN_URL?.trim();
+  const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
+  const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
+  const liveTrainingUrl = process.env.LIVE_TRAINING_URL?.trim() || "https://live-training.vercel.app";
+
+  const tactiDraw = configuredProduct({
+    id: "tactidraw",
+    title: "TactiDraw",
+    description: "Análise de vídeo, desenho tático e construção de apresentações.",
+    url: tactiDrawUrl,
+    icon: "presentation",
+  });
+
+  const gamePlan = configuredProduct({
+    id: "gameplan",
+    title: "GamePlan",
+    description: "Planeamento do jogo com apresentações próprias e a mesma biblioteca de vídeos.",
+    url: gamePlanUrl,
+    icon: "presentation",
+  });
+
+  const writtenReport = configuredProduct({
+    id: "written-report",
+    title: "Written Report",
+    description: "Relatório do adversário com dados do jogo, esquemas, desenhos e momentos táticos.",
+    url: writtenReportUrl,
+    icon: "document",
+  });
+
+  return [
+    {
+      id: "opponent-teams",
+      number: "01",
+      title: "Opponent teams",
+      description: "Preparação coletiva do adversário, do vídeo ao plano de jogo.",
+      icon: "opponent-team",
+      accent: "#55ddeb",
+      products: [
+        {
+          id: "opponents-video-analysis",
+          title: "AP Opponents Video Analysis",
+          description: "Codificação, consulta e análise dos momentos coletivos do adversário.",
+          url: "https://analise-adversario.vercel.app/",
+          icon: "video",
+          status: "available",
+        },
+        {
+          id: "goals-scored",
+          title: "Goals Scored",
+          description: "Padrões e contexto dos golos marcados pelo adversário.",
+          url: "https://football-analysis1.vercel.app/",
+          icon: "goal",
+          status: "available",
+        },
+        {
+          id: "goals-suffered",
+          title: "Goals Suffered",
+          description: "Consulta dos golos sofridos e dos comportamentos que os antecedem.",
+          url: "https://golossofridos.vercel.app/",
+          icon: "goal",
+          status: "available",
+        },
+        writtenReport,
+        tactiDraw,
+        gamePlan,
+        configuredProduct({
+          id: "live-game",
+          title: "Live Game",
+          description: "Registo, replay e apoio à decisão durante o jogo.",
+          url: liveGameUrl,
+          icon: "live",
+        }),
+      ],
+    },
+    {
+      id: "opponent-players",
+      number: "02",
+      title: "Opponent players",
+      description: "Perfis individuais dos jogadores que a equipa vai enfrentar.",
+      icon: "opponent-player",
+      accent: "#aa8cff",
+      products: [
+        {
+          id: "opponent-player-report",
+          title: "Opponent Player Report",
+          description: "Observação individual, pontos fortes, fragilidades e clips por jogador.",
+          icon: "users",
+          status: "planned",
+        },
+      ],
+    },
+    {
+      id: "our-team-performance",
+      number: "03",
+      title: "Our team performance",
+      description: "Leitura coletiva da nossa equipa e revisão do rendimento em jogo.",
+      icon: "our-team",
+      accent: "#3ee6a8",
+      products: [
+        {
+          id: "team-analysis",
+          title: "AP Our Team Analysis",
+          description: "Momentos, submomentos, mapas e consultas da nossa equipa.",
+          url: "/sso/launch/analise-equipa",
+          icon: "chart",
+          status: "available",
+        },
+        {
+          id: "our-goals-suffered",
+          title: "Goals Suffered",
+          description: "Contexto tático e intervenientes de cada golo sofrido.",
+          url: "https://golossofridos.vercel.app/",
+          icon: "goal",
+          status: "available",
+        },
+      ],
+    },
+    {
+      id: "our-players-performance",
+      number: "04",
+      title: "Our players performance",
+      description: "Vídeo individual, ações e indicadores dos nossos jogadores.",
+      icon: "our-player",
+      accent: "#f6b94f",
+      products: [
+        {
+          id: "individual-video-analysis",
+          title: "AP Player Video Analysis",
+          description: "Codificação e revisão das ações individuais diretamente no vídeo.",
+          url: "https://video-analise-jogadores.vercel.app/",
+          icon: "video",
+          status: "available",
+        },
+        {
+          id: "player-performance",
+          title: "Player Performance",
+          description: "Estatísticas, comparações e mapas de rendimento individual.",
+          url: "https://football-our-players-yavn.vercel.app/",
+          icon: "map",
+          status: "available",
+        },
+      ],
+    },
+    {
+      id: "practice",
+      number: "05",
+      title: "Practice",
+      description: "Planeamento e acompanhamento do processo de treino.",
+      icon: "practice",
+      accent: "#fb7185",
+      products: [
+        configuredProduct({
+          id: "live-training",
+          title: "Live Training",
+          description: "Registo e análise do treino no terreno.",
+          url: liveTrainingUrl,
+          icon: "training",
+        }),
+      ],
+    },
+    {
+      id: "individual-tactics",
+      number: "06",
+      title: "Individual tactics",
+      description: "Intervenção específica por posição, função e jogador.",
+      icon: "individual",
+      accent: "#67e8f9",
+      products: [tactiDraw],
+    },
+    {
+      id: "collective-tactics",
+      number: "07",
+      title: "Collective tactics",
+      description: "Estratégia coletiva, princípios e preparação do próximo jogo.",
+      icon: "collective",
+      accent: "#a3ff12",
+      products: [gamePlan, tactiDraw],
+    },
+    {
+      id: "scouting",
+      number: "08",
+      title: "Scouting",
+      description: "Observação, comparação e decisão sobre potenciais jogadores.",
+      icon: "scouting",
+      accent: "#c4b5fd",
+      products: [
+        {
+          id: "scouting-workspace",
+          title: "AP Scouting",
+          description: "Base futura para observações, shortlists e relatórios de recrutamento.",
+          icon: "scouting",
+          status: "planned",
+        },
+      ],
+    },
+  ];
+}
