@@ -4,10 +4,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "AP Football Analysis",
-    template: "%s · AP Football Analysis"
+    default: "All-in-One Football Ecosystem",
+    template: "%s · All-in-One Football Ecosystem"
   },
-  description: "A central de acesso ao ecossistema AP Football Analysis.",
+  description: "A central de acesso ao All-in-One Football Ecosystem.",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon.svg" }
 };

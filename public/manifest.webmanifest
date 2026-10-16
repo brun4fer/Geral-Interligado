@@ -1,7 +1,7 @@
 {
-  "name": "AP Football Analysis",
-  "short_name": "AP Analysis",
-  "description": "Central de acesso ao ecossistema AP Football Analysis.",
+  "name": "All-in-One Football Ecosystem",
+  "short_name": "Football Ecosystem",
+  "description": "Central de acesso ao All-in-One Football Ecosystem.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#06110f",

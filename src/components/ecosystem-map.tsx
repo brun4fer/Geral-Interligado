@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import type { ComponentType, CSSProperties } from "react";
 import { useState } from "react";
 import {
   Activity,
@@ -21,20 +21,44 @@ import {
   Users,
   Video,
 } from "lucide-react";
+import type { LucideProps } from "lucide-react";
 import type { EcosystemArea, Product, ProductIcon } from "@/lib/products";
 
-const areaIcons = {
+function CodingAnalysisIcon({ size = 24, ...props }: LucideProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <rect x="2.5" y="4.5" width="19" height="15" rx="1.5" />
+      <path d="M12 4.5v15M2.5 12h19" opacity=".65" />
+      <circle cx="12" cy="12" r="3.2" />
+      <circle cx="16.4" cy="8.3" r="1.25" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function TrainingDrillIcon({ size = 24, ...props }: LucideProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <circle cx="5" cy="18" r="2" />
+      <path d="M7 18c3.5 0 2.5-6 6-6h4.5" />
+      <path d="m15.5 9.5 2.5 2.5-2.5 2.5" />
+      <path d="m5 5-2 4h4L5 5Zm14 1-2 4h4l-2-4Z" />
+    </svg>
+  );
+}
+
+const areaIcons: Record<EcosystemArea["icon"], ComponentType<LucideProps>> = {
   "opponent-team": Shield,
   "opponent-player": UserRoundSearch,
   "our-team": ChartNoAxesCombined,
   "our-player": Users,
-  practice: Dumbbell,
+  practice: TrainingDrillIcon,
   individual: PersonStanding,
   collective: GoalIcon,
   scouting: Binoculars,
 };
 
-const productIcons: Record<ProductIcon, typeof Video> = {
+const productIcons: Record<ProductIcon, ComponentType<LucideProps>> = {
+  coding: CodingAnalysisIcon,
   video: Video,
   goal: GoalIcon,
   users: Users,
@@ -120,7 +144,7 @@ export function EcosystemMap({ areas }: { areas: EcosystemArea[] }) {
             <h3 id="active-area-title">{activeArea.title}</h3>
             <p>{activeArea.description}</p>
           </div>
-          <div className="ecosystem-detail-brand"><Sparkles size={16} /> AP ecosystem</div>
+          <div className="ecosystem-detail-brand"><Sparkles size={16} /> All-in-one ecosystem</div>
         </div>
         <div className="ecosystem-products">
           {activeArea.products.map((product) => <ProductLink key={product.id} product={product} />)}

@@ -1,4 +1,4 @@
-export type ProductIcon = "video" | "goal" | "users" | "chart" | "map" | "live" | "document" | "presentation" | "training" | "scouting";
+export type ProductIcon = "coding" | "video" | "goal" | "users" | "chart" | "map" | "live" | "document" | "presentation" | "training" | "scouting";
 
 export type ProductStatus = "available" | "configuration" | "planned";
 
@@ -34,7 +34,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
-    title: "TactiDraw",
+    title: "Opponent Video Analysis",
     description: "Análise de vídeo, desenho tático e construção de apresentações.",
     url: tactiDrawUrl,
     icon: "presentation",
@@ -67,12 +67,13 @@ export function getEcosystemAreas(): EcosystemArea[] {
       products: [
         {
           id: "opponents-video-analysis",
-          title: "AP Opponents Video Analysis",
+          title: "Coding and Analysing",
           description: "Codificação, consulta e análise dos momentos coletivos do adversário.",
           url: "https://analise-adversario.vercel.app/",
-          icon: "video",
+          icon: "coding",
           status: "available",
         },
+        writtenReport,
         {
           id: "goals-scored",
           title: "Goals Scored",
@@ -81,15 +82,6 @@ export function getEcosystemAreas(): EcosystemArea[] {
           icon: "goal",
           status: "available",
         },
-        {
-          id: "goals-suffered",
-          title: "Goals Suffered",
-          description: "Consulta dos golos sofridos e dos comportamentos que os antecedem.",
-          url: "https://golossofridos.vercel.app/",
-          icon: "goal",
-          status: "available",
-        },
-        writtenReport,
         tactiDraw,
         gamePlan,
         configuredProduct({
