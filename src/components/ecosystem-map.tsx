@@ -125,8 +125,6 @@ export function EcosystemMap({ areas }: { areas: EcosystemArea[] }) {
               style={{ "--node-accent": area.accent } as CSSProperties}
               aria-pressed={active}
               aria-controls="ecosystem-products"
-              onPointerEnter={() => setActiveId(area.id)}
-              onFocus={() => setActiveId(area.id)}
               onClick={() => setActiveId(area.id)}
             >
               <span className="ecosystem-node-name">{area.title}</span>
