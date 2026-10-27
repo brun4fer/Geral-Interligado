@@ -30,7 +30,6 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const gamePlanUrl = process.env.GAMEPLAN_URL?.trim();
   const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
-  const liveTrainingUrl = process.env.LIVE_TRAINING_URL?.trim() || "https://live-training.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -234,13 +233,13 @@ export function getEcosystemAreas(): EcosystemArea[] {
       icon: "practice",
       accent: "#fb7185",
       products: [
-        configuredProduct({
+        {
           id: "live-training",
           title: "Coding and Analysis (Live Training)",
           description: "Live coding and analysis of training sessions on the pitch.",
-          url: liveTrainingUrl,
           icon: "coding",
-        }),
+          status: "planned",
+        },
         {
           id: "training-performance-report",
           title: "Performance Report",
