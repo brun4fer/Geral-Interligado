@@ -30,6 +30,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const gamePlanUrl = process.env.GAMEPLAN_URL?.trim();
   const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
+  const opponentPlayersUrl = process.env.OPPONENT_PLAYERS_URL?.trim() || "https://ap-opponent-players.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -100,13 +101,13 @@ export function getEcosystemAreas(): EcosystemArea[] {
       icon: "opponent-player",
       accent: "#aa8cff",
       products: [
-        {
+        configuredProduct({
           id: "opponent-player-squad-list",
           title: "Squad List",
           description: "Opponent squad and essential information about each player.",
+          url: opponentPlayersUrl,
           icon: "users",
-          status: "planned",
-        },
+        }),
         {
           id: "opponent-player-written-report",
           title: "Individual Written Report",
