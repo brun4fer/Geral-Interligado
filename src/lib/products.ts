@@ -31,6 +31,8 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
   const opponentPlayersUrl = process.env.OPPONENT_PLAYERS_URL?.trim() || "https://ap-opponent-players.vercel.app";
+  const individualWrittenReportUrl = process.env.INDIVIDUAL_WRITTEN_REPORT_URL?.trim() || "https://ap-individual-written-report.vercel.app";
+  const opponentPlayerVideoAnalysisUrl = process.env.OPPONENT_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-opponent-player-video-analysis.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -108,20 +110,20 @@ export function getEcosystemAreas(): EcosystemArea[] {
           url: opponentPlayersUrl,
           icon: "users",
         }),
-        {
+        configuredProduct({
           id: "opponent-player-written-report",
           title: "Individual Written Report",
           description: "Individual observations, strengths and weaknesses for each player.",
+          url: individualWrittenReportUrl,
           icon: "document",
-          status: "planned",
-        },
-        {
+        }),
+        configuredProduct({
           id: "opponent-player-video-analysis",
-          title: "Video Analysis",
+          title: "Opponent Player Video Analysis",
           description: "Clips and video analysis of the opponent players' actions.",
+          url: opponentPlayerVideoAnalysisUrl,
           icon: "video",
-          status: "planned",
-        },
+        }),
       ],
     },
     {

@@ -19,7 +19,8 @@ que possa levar o utilizador a uma página inexistente.
 
 Os endereços do TactiDraw, GamePlan, Live Game e Live Training são configuráveis
 com `TACTIDRAW_URL`, `GAMEPLAN_URL`, `WRITTEN_REPORT_URL`, `LIVE_GAME_URL`,
-`LIVE_TRAINING_URL` e `OPPONENT_PLAYERS_URL`.
+`LIVE_TRAINING_URL`, `OPPONENT_PLAYERS_URL`, `INDIVIDUAL_WRITTEN_REPORT_URL` e
+`OPPONENT_PLAYER_VIDEO_ANALYSIS_URL`.
 
 ## Configuração local
 
