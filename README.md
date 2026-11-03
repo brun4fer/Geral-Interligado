@@ -17,8 +17,8 @@ Ao passar o rato, usar o teclado ou tocar numa área, o portal mostra os softwar
 relacionados. Os módulos ainda não criados surgem como planeados, sem uma ligação
 que possa levar o utilizador a uma página inexistente.
 
-Os endereços do TactiDraw, GamePlan, Live Game e Live Training são configuráveis
-com `TACTIDRAW_URL`, `GAMEPLAN_URL`, `WRITTEN_REPORT_URL`, `LIVE_GAME_URL`,
+Os endereços do TactiDraw, GamePlan, Game Review, Live Game e Live Training são configuráveis
+com `TACTIDRAW_URL`, `GAMEPLAN_URL`, `GAME_REVIEW_URL`, `WRITTEN_REPORT_URL`, `LIVE_GAME_URL`,
 `LIVE_TRAINING_URL`, `OPPONENT_PLAYERS_URL`, `INDIVIDUAL_WRITTEN_REPORT_URL` e
 `OPPONENT_PLAYER_VIDEO_ANALYSIS_URL`.
 

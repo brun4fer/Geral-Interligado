@@ -28,6 +28,7 @@ function configuredProduct(product: Omit<Product, "status">): Product {
 export function getEcosystemAreas(): EcosystemArea[] {
   const tactiDrawUrl = process.env.TACTIDRAW_URL?.trim() || "https://draw-analysis.vercel.app";
   const gamePlanUrl = process.env.GAMEPLAN_URL?.trim();
+  const gameReviewUrl = process.env.GAME_REVIEW_URL?.trim();
   const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
   const opponentPlayersUrl = process.env.OPPONENT_PLAYERS_URL?.trim() || "https://ap-opponent-players.vercel.app";
@@ -165,13 +166,13 @@ export function getEcosystemAreas(): EcosystemArea[] {
           icon: "goal",
           status: "available",
         },
-        {
+        configuredProduct({
           id: "our-team-game-review",
-          title: "Game Analysis / Game Review",
-          description: "Complete match review and the team's key performance indicators.",
-          icon: "chart",
-          status: "planned",
-        },
+          title: "Game Review",
+          description: "Complete match review with video, tactical drawings and dedicated presentations.",
+          url: gameReviewUrl,
+          icon: "presentation",
+        }),
       ],
     },
     {
