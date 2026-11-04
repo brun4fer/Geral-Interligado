@@ -36,8 +36,8 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const opponentPlayerVideoAnalysisUrl = process.env.OPPONENT_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-opponent-player-video-analysis.vercel.app";
   const ourPlayerPerformanceReportUrl = process.env.OUR_PLAYER_PERFORMANCE_REPORT_URL?.trim() || "https://ap-our-player-performance-report.vercel.app";
   const ourPlayerVideoAnalysisUrl = process.env.OUR_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-our-player-video-analysis.vercel.app";
-  const collectiveTrainingVideoAnalysisUrl = process.env.COLLECTIVE_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-collective-training-video-analysis.vercel.app";
-  const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analysis.vercel.app";
+  const collectiveTrainingVideoAnalysisUrl = process.env.COLLECTIVE_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-collective-training-video-analys.vercel.app";
+  const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analys.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -205,8 +205,8 @@ export function getEcosystemAreas(): EcosystemArea[] {
         },
         configuredProduct({
           id: "our-player-performance-report",
-          title: "Performance Report",
-          description: "Individual performance report for each player.",
+          title: "Individual Written Report",
+          description: "Individual written report for each of our players.",
           url: ourPlayerPerformanceReportUrl,
           icon: "document",
         }),
