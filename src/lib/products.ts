@@ -34,6 +34,10 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const opponentPlayersUrl = process.env.OPPONENT_PLAYERS_URL?.trim() || "https://ap-opponent-players.vercel.app";
   const individualWrittenReportUrl = process.env.INDIVIDUAL_WRITTEN_REPORT_URL?.trim() || "https://ap-individual-written-report.vercel.app";
   const opponentPlayerVideoAnalysisUrl = process.env.OPPONENT_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-opponent-player-video-analysis.vercel.app";
+  const ourPlayerPerformanceReportUrl = process.env.OUR_PLAYER_PERFORMANCE_REPORT_URL?.trim() || "https://ap-our-player-performance-report.vercel.app";
+  const ourPlayerVideoAnalysisUrl = process.env.OUR_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-our-player-video-analysis.vercel.app";
+  const collectiveTrainingVideoAnalysisUrl = process.env.COLLECTIVE_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-collective-training-video-analysis.vercel.app";
+  const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analysis.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -199,20 +203,20 @@ export function getEcosystemAreas(): EcosystemArea[] {
           icon: "map",
           status: "available",
         },
-        {
+        configuredProduct({
           id: "our-player-performance-report",
           title: "Performance Report",
           description: "Individual performance report for each player.",
+          url: ourPlayerPerformanceReportUrl,
           icon: "document",
-          status: "planned",
-        },
-        {
+        }),
+        configuredProduct({
           id: "our-player-video-analysis",
           title: "Video Analysis",
           description: "Video analysis of each player's actions and behaviours.",
+          url: ourPlayerVideoAnalysisUrl,
           icon: "video",
-          status: "planned",
-        },
+        }),
         {
           id: "our-player-gps",
           title: "GPS",
@@ -251,20 +255,20 @@ export function getEcosystemAreas(): EcosystemArea[] {
           icon: "document",
           status: "planned",
         },
-        {
+        configuredProduct({
           id: "training-individual-video-analysis",
           title: "Individual Video Analysis",
           description: "Video analysis of individual performance during training.",
+          url: individualTrainingVideoAnalysisUrl,
           icon: "video",
-          status: "planned",
-        },
-        {
+        }),
+        configuredProduct({
           id: "training-collective-video-analysis",
           title: "Collective Video Analysis",
           description: "Video analysis of drills and collective behaviours.",
+          url: collectiveTrainingVideoAnalysisUrl,
           icon: "video",
-          status: "planned",
-        },
+        }),
         {
           id: "training-gps",
           title: "GPS",
