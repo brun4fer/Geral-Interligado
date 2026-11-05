@@ -25,7 +25,7 @@ function configuredProduct(product: Omit<Product, "status">): Product {
   return { ...product, status: product.url ? "available" : "configuration" };
 }
 
-function actionMapEntryUrl(baseUrl: string, destination: "/teams" | "/players") {
+function actionMapEntryUrl(baseUrl: string, destination: "/teams" | "/players" | "/gps/teams" | "/gps/players") {
   const normalizedBaseUrl = baseUrl.replace(/\/+$/, "");
   return `${normalizedBaseUrl}/login?next=${encodeURIComponent(destination)}`;
 }
@@ -170,6 +170,14 @@ export function getEcosystemAreas(): EcosystemArea[] {
           status: "available",
         },
         {
+          id: "our-team-gps",
+          title: "GPS",
+          description: "Collective physical load calculated from the players' GPS statistics.",
+          url: actionMapEntryUrl(actionMapUrl, "/gps/teams"),
+          icon: "map",
+          status: "available",
+        },
+        {
           id: "our-goals-suffered",
           title: "Goals Suffered",
           description: "Tactical context and players involved in each goal suffered.",
@@ -228,8 +236,9 @@ export function getEcosystemAreas(): EcosystemArea[] {
           id: "our-player-gps",
           title: "GPS",
           description: "External load, distance, speed and physical performance indicators.",
+          url: actionMapEntryUrl(actionMapUrl, "/gps/players"),
           icon: "map",
-          status: "planned",
+          status: "available",
         },
         {
           id: "our-player-wellness-report",
