@@ -240,13 +240,6 @@ export function getEcosystemAreas(): EcosystemArea[] {
           icon: "map",
           status: "available",
         },
-        {
-          id: "our-player-wellness-report",
-          title: "Wellness Report",
-          description: "Player wellness and availability monitoring.",
-          icon: "chart",
-          status: "planned",
-        },
       ],
     },
     {
