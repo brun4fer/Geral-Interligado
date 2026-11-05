@@ -25,6 +25,11 @@ function configuredProduct(product: Omit<Product, "status">): Product {
   return { ...product, status: product.url ? "available" : "configuration" };
 }
 
+function actionMapEntryUrl(baseUrl: string, destination: "/teams" | "/players") {
+  const normalizedBaseUrl = baseUrl.replace(/\/+$/, "");
+  return `${normalizedBaseUrl}/login?next=${encodeURIComponent(destination)}`;
+}
+
 export function getEcosystemAreas(): EcosystemArea[] {
   const tactiDrawUrl = process.env.TACTIDRAW_URL?.trim() || "https://draw-analysis.vercel.app";
   const gamePlanUrl = process.env.GAMEPLAN_URL?.trim();
@@ -38,6 +43,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const ourPlayerVideoAnalysisUrl = process.env.OUR_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-our-player-video-analysis.vercel.app";
   const collectiveTrainingVideoAnalysisUrl = process.env.COLLECTIVE_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-collective-training-video-analys.vercel.app";
   const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analys.vercel.app";
+  const actionMapUrl = process.env.ACTION_MAP_URL?.trim() || "https://football-our-players-yavn.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -149,10 +155,11 @@ export function getEcosystemAreas(): EcosystemArea[] {
         },
         {
           id: "our-team-performance-reports",
-          title: "Performance Reports",
-          description: "Collective performance reports for our team.",
-          icon: "document",
-          status: "planned",
+          title: "Action Map",
+          description: "Collective statistics, action maps and team performance charts.",
+          url: actionMapEntryUrl(actionMapUrl, "/teams"),
+          icon: "map",
+          status: "available",
         },
         {
           id: "our-team-goals-scored",
@@ -199,7 +206,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
           id: "our-player-action-map",
           title: "Action Map",
           description: "Statistics, comparisons and individual performance maps.",
-          url: "https://football-our-players-yavn.vercel.app/",
+          url: actionMapEntryUrl(actionMapUrl, "/players"),
           icon: "map",
           status: "available",
         },
