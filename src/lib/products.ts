@@ -25,7 +25,7 @@ function configuredProduct(product: Omit<Product, "status">): Product {
   return { ...product, status: product.url ? "available" : "configuration" };
 }
 
-function actionMapEntryUrl(baseUrl: string, destination: "/teams" | "/players" | "/gps/teams" | "/gps/players") {
+function actionMapEntryUrl(baseUrl: string, destination: "/teams" | "/players" | "/gps/teams" | "/gps/players" | "/gps/training/teams") {
   const normalizedBaseUrl = baseUrl.replace(/\/+$/, "");
   return `${normalizedBaseUrl}/login?next=${encodeURIComponent(destination)}`;
 }
@@ -44,6 +44,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const ourPlayerVideoAnalysisUrl = process.env.OUR_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-our-player-video-analysis.vercel.app";
   const collectiveTrainingVideoAnalysisUrl = process.env.COLLECTIVE_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-collective-training-video-analys.vercel.app";
   const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analys.vercel.app";
+  const trainingWellnessUrl = process.env.TRAINING_WELLNESS_URL?.trim() || "https://ap-training-wellness.vercel.app";
   const actionMapUrl = process.env.ACTION_MAP_URL?.trim() || "https://football-our-players-yavn.vercel.app";
 
   const tactiDraw = configuredProduct({
@@ -283,16 +284,17 @@ export function getEcosystemAreas(): EcosystemArea[] {
           id: "training-gps",
           title: "GPS",
           description: "External load and physical indicators recorded during training.",
+          url: actionMapEntryUrl(actionMapUrl, "/gps/training/teams"),
           icon: "map",
-          status: "planned",
+          status: "available",
         },
-        {
+        configuredProduct({
           id: "training-wellness-report",
           title: "Wellness Report",
           description: "Wellness, fatigue and availability before and after training.",
+          url: trainingWellnessUrl,
           icon: "chart",
-          status: "planned",
-        },
+        }),
       ],
     },
     {
