@@ -36,6 +36,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const gameReviewUrl = process.env.GAME_REVIEW_URL?.trim();
   const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
+  const liveTrainingUrl = process.env.LIVE_TRAINING_URL?.trim() || "https://livetraining-brun4fers-projects.vercel.app";
   const opponentPlayersUrl = process.env.OPPONENT_PLAYERS_URL?.trim() || "https://ap-opponent-players.vercel.app";
   const individualWrittenReportUrl = process.env.INDIVIDUAL_WRITTEN_REPORT_URL?.trim() || "https://ap-individual-written-report.vercel.app";
   const opponentPlayerVideoAnalysisUrl = process.env.OPPONENT_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-opponent-player-video-analysis.vercel.app";
@@ -250,13 +251,13 @@ export function getEcosystemAreas(): EcosystemArea[] {
       icon: "practice",
       accent: "#fb7185",
       products: [
-        {
+        configuredProduct({
           id: "live-training",
           title: "Coding and Analysis (Live Training)",
           description: "Live coding and analysis of training sessions on the pitch.",
+          url: liveTrainingUrl,
           icon: "coding",
-          status: "planned",
-        },
+        }),
         {
           id: "training-performance-report",
           title: "Performance Report",
