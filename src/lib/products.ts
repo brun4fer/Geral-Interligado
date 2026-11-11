@@ -36,7 +36,9 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const gameReviewUrl = process.env.GAME_REVIEW_URL?.trim();
   const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
-  const liveTrainingUrl = process.env.LIVE_TRAINING_URL?.trim() || "https://livetraining-brun4fers-projects.vercel.app";
+  // This must remain the public production domain. Vercel deployment URLs can
+  // be protected and redirect users to Vercel Authentication instead.
+  const liveTrainingUrl = "https://livetraining-brun4fers-projects.vercel.app";
   const opponentPlayersUrl = process.env.OPPONENT_PLAYERS_URL?.trim() || "https://ap-opponent-players.vercel.app";
   const individualWrittenReportUrl = process.env.INDIVIDUAL_WRITTEN_REPORT_URL?.trim() || "https://ap-individual-written-report.vercel.app";
   const opponentPlayerVideoAnalysisUrl = process.env.OPPONENT_PLAYER_VIDEO_ANALYSIS_URL?.trim() || "https://ap-opponent-player-video-analysis.vercel.app";
