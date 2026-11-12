@@ -261,13 +261,6 @@ export function getEcosystemAreas(): EcosystemArea[] {
           url: liveTrainingUrl,
           icon: "coding",
         }),
-        {
-          id: "training-performance-report",
-          title: "Performance Report",
-          description: "Performance and workload report for each training session.",
-          icon: "document",
-          status: "planned",
-        },
         configuredProduct({
           id: "training-individual-video-analysis",
           title: "Individual Video Analysis",
@@ -312,13 +305,6 @@ export function getEcosystemAreas(): EcosystemArea[] {
           title: "Coding and Analysis",
           description: "Coding and analysis of individual technical work.",
           icon: "coding",
-          status: "planned",
-        },
-        {
-          id: "individual-technical-studies-reports",
-          title: "Studies and Reports",
-          description: "Studies by position, role and individual player needs.",
-          icon: "document",
           status: "planned",
         },
         {
