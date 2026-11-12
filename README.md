@@ -60,3 +60,9 @@ O portal emite códigos aleatórios de utilização única, válidos durante 60 
 5. Manter `PORTAL_REGISTRATION_ENABLED=false` depois de Paulo, Simão e Bruno terem as suas contas controladas.
 
 O botão “Análise de jogo” abre `/sso/launch/analise-equipa`. Se a sessão do portal ainda for válida, a entrada na aplicação acontece sem um segundo formulário de login.
+
+### Individual Technical Analysis
+
+O mesmo fluxo SSO é usado na Área 6. Configure no portal `INDIVIDUAL_TECHNICAL_ANALYSIS_URL` e `SSO_INDIVIDUAL_TECHNICAL_ANALYSIS_CLIENT_SECRET`. No novo software, configure o mesmo segredo em `SSO_CLIENT_SECRET`, além de `SSO_ENABLED=true`, `NEXT_PUBLIC_SSO_ENABLED=true`, `SSO_ISSUER_URL` e `SSO_APP_URL`.
+
+O acesso abre `/sso/launch/individual-technical-analysis`. Na primeira entrada, o software cria automaticamente uma conta local privada ligada ao utilizador do portal; o login local continua disponível como alternativa.

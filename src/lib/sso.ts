@@ -30,11 +30,24 @@ function appOrigin(value: string | undefined, fallback: string) {
 }
 
 export function getSsoClient(clientId: string): SsoClient | null {
-  if (clientId !== "analise-equipa") return null;
-  const origin = appOrigin(process.env.ANALISE_EQUIPA_URL, "https://analise-equipa.vercel.app");
+  const clients: Record<string, { url: string | undefined; fallback: string; secret: string | undefined }> = {
+    "analise-equipa": {
+      url: process.env.ANALISE_EQUIPA_URL,
+      fallback: "https://analise-equipa.vercel.app",
+      secret: process.env.SSO_ANALISE_EQUIPA_CLIENT_SECRET,
+    },
+    "individual-technical-analysis": {
+      url: process.env.INDIVIDUAL_TECHNICAL_ANALYSIS_URL,
+      fallback: "https://ap-individual-technical-analysis.vercel.app",
+      secret: process.env.SSO_INDIVIDUAL_TECHNICAL_ANALYSIS_CLIENT_SECRET,
+    },
+  };
+  const selected = clients[clientId];
+  if (!selected) return null;
+  const origin = appOrigin(selected.url, selected.fallback);
   return {
     id: clientId,
-    secret: process.env.SSO_ANALISE_EQUIPA_CLIENT_SECRET?.trim() || "",
+    secret: selected.secret?.trim() || "",
     redirectUri: `${origin}/api/auth/sso/callback`,
     launchUrl: `${origin}/api/auth/sso/start?next=%2F`
   };

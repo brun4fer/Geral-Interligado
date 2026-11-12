@@ -303,9 +303,10 @@ export function getEcosystemAreas(): EcosystemArea[] {
         {
           id: "individual-technical-coding-analysis",
           title: "Coding and Analysis",
-          description: "Coding and analysis of individual technical work.",
+          description: "Video coding and technical analysis focused on an individual player.",
+          url: "/sso/launch/individual-technical-analysis",
           icon: "coding",
-          status: "planned",
+          status: "available",
         },
         {
           ...tactiDraw,
