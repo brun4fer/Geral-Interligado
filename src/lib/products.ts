@@ -32,9 +32,12 @@ function actionMapEntryUrl(baseUrl: string, destination: "/teams" | "/players" |
 
 export function getEcosystemAreas(): EcosystemArea[] {
   const tactiDrawUrl = process.env.TACTIDRAW_URL?.trim() || "https://draw-analysis.vercel.app";
-  const gamePlanUrl = process.env.GAMEPLAN_URL?.trim();
-  const gameReviewUrl = process.env.GAME_REVIEW_URL?.trim();
-  const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim();
+  // Public product domains are valid both in production and when the portal is
+  // started locally. Environment values still take precedence, including when a
+  // future deployment gets a custom domain.
+  const gamePlanUrl = process.env.GAMEPLAN_URL?.trim() || "https://ap-gameplan.vercel.app";
+  const gameReviewUrl = process.env.GAME_REVIEW_URL?.trim() || "https://ap-game-review.vercel.app";
+  const writtenReportUrl = process.env.WRITTEN_REPORT_URL?.trim() || "https://draw-analysis-m24m.vercel.app";
   const liveGameUrl = process.env.LIVE_GAME_URL?.trim() || "https://live-game-lilac.vercel.app";
   // This must remain the public production domain. Vercel deployment URLs can
   // be protected and redirect users to Vercel Authentication instead.
