@@ -51,6 +51,10 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analys.vercel.app";
   const trainingWellnessUrl = process.env.TRAINING_WELLNESS_URL?.trim() || "https://ap-training-wellness.vercel.app";
   const actionMapUrl = process.env.ACTION_MAP_URL?.trim() || "https://football-our-players-yavn.vercel.app";
+  const opponentPlayersCodingVideoUrl = process.env.OPPONENT_PLAYERS_CODING_VIDEO_URL?.trim() || "https://coding-analysis-video.vercel.app";
+  const opponentPlayersCodingGamesUrl = process.env.OPPONENT_PLAYERS_CODING_GAMES_URL?.trim() || "https://coding-analysis-games-opponent.vercel.app";
+  const scoutingCodingAnalysisUrl = process.env.SCOUTING_CODING_ANALYSIS_URL?.trim() || "https://coding-analysis-scouting.vercel.app";
+  const scoutingCodingGamesUrl = process.env.SCOUTING_CODING_GAMES_URL?.trim() || "https://coding-analysis-scouting-games.vercel.app";
 
   const tactiDraw = configuredProduct({
     id: "tactidraw",
@@ -141,6 +145,20 @@ export function getEcosystemAreas(): EcosystemArea[] {
           description: "Clips and video analysis of the opponent players' actions.",
           url: opponentPlayerVideoAnalysisUrl,
           icon: "video",
+        }),
+        configuredProduct({
+          id: "opponent-player-coding-games",
+          title: "Coding and Analysis Games",
+          description: "Coding and analysis of opponent players across full matches.",
+          url: opponentPlayersCodingGamesUrl,
+          icon: "coding",
+        }),
+        configuredProduct({
+          id: "opponent-player-coding-video",
+          title: "Coding and Analysis Video",
+          description: "Coding and analysis of an opponent player's actions across video clips.",
+          url: opponentPlayersCodingVideoUrl,
+          icon: "coding",
         }),
       ],
     },
@@ -356,6 +374,20 @@ export function getEcosystemAreas(): EcosystemArea[] {
       icon: "scouting",
       accent: "#c4b5fd",
       products: [
+        configuredProduct({
+          id: "scouting-coding-games",
+          title: "Coding and Analysis Games",
+          description: "Scouting analysis across full matches and game contexts.",
+          url: scoutingCodingGamesUrl,
+          icon: "coding",
+        }),
+        configuredProduct({
+          id: "scouting-coding-video",
+          title: "Coding and Analysis Video",
+          description: "Individual player observation and coding for recruitment scouting.",
+          url: scoutingCodingAnalysisUrl,
+          icon: "coding",
+        }),
         {
           id: "scouting-player-list",
           title: "Player List",
