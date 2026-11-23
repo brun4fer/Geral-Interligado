@@ -41,6 +41,26 @@ export function getSsoClient(clientId: string): SsoClient | null {
       fallback: "https://ap-individual-technical-analysis.vercel.app",
       secret: process.env.SSO_INDIVIDUAL_TECHNICAL_ANALYSIS_CLIENT_SECRET,
     },
+    "coding-analysis-scouting": {
+      url: process.env.SCOUTING_CODING_ANALYSIS_URL,
+      fallback: "https://coding-analysis-scouting.vercel.app",
+      secret: process.env.SSO_CODING_ANALYSIS_SCOUTING_CLIENT_SECRET,
+    },
+    "coding-analysis-video": {
+      url: process.env.OPPONENT_PLAYERS_CODING_VIDEO_URL,
+      fallback: "https://coding-analysis-video.vercel.app",
+      secret: process.env.SSO_CODING_ANALYSIS_VIDEO_CLIENT_SECRET,
+    },
+    "coding-analysis-games-opponent": {
+      url: process.env.OPPONENT_PLAYERS_CODING_GAMES_URL,
+      fallback: "https://coding-analysis-games-opponent.vercel.app",
+      secret: process.env.SSO_CODING_ANALYSIS_GAMES_OPPONENT_CLIENT_SECRET,
+    },
+    "coding-analysis-scouting-games": {
+      url: process.env.SCOUTING_CODING_GAMES_URL,
+      fallback: "https://coding-analysis-scouting-games.vercel.app",
+      secret: process.env.SSO_CODING_ANALYSIS_SCOUTING_GAMES_CLIENT_SECRET,
+    },
   };
   const selected = clients[clientId];
   if (!selected) return null;
