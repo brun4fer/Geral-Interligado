@@ -50,6 +50,7 @@ export function getEcosystemAreas(): EcosystemArea[] {
   const collectiveTrainingVideoAnalysisUrl = process.env.COLLECTIVE_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-collective-training-video-analys.vercel.app";
   const individualTrainingVideoAnalysisUrl = process.env.INDIVIDUAL_TRAINING_VIDEO_ANALYSIS_URL?.trim() || "https://ap-individual-training-video-analys.vercel.app";
   const trainingWellnessUrl = process.env.TRAINING_WELLNESS_URL?.trim() || "https://ap-training-wellness.vercel.app";
+  const trainingExercisesUrl = process.env.TRAINING_EXERCISES_URL?.trim() || "https://ap-training-exercises.vercel.app";
   const actionMapUrl = process.env.ACTION_MAP_URL?.trim() || "https://football-our-players-yavn.vercel.app";
 
   const tactiDraw = configuredProduct({
@@ -277,6 +278,13 @@ export function getEcosystemAreas(): EcosystemArea[] {
           description: "Live coding and analysis of training sessions on the pitch.",
           url: liveTrainingUrl,
           icon: "coding",
+        }),
+        configuredProduct({
+          id: "training-exercises",
+          title: "Training Exercises",
+          description: "Design drills, players, equipment and complete training-session plans.",
+          url: trainingExercisesUrl,
+          icon: "training",
         }),
         configuredProduct({
           id: "training-individual-video-analysis",
